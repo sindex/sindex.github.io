@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Effective Text Editing with Vim</title>
+    <meta charset="utf-8">
+    <style>
+      code { font-family: 'Courier10PitchBT-Roman'; font-weight: 500;}
+      body { font-family: 'Gill Sans Nova Medium'; }
+      h1, h2, h3 {
+        font-family: 'Gill Sans Nova Medium';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-style: 'italic'; }
+
+      /* Two-column layout */
+      .left-column {
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+
+      kbd {
+        white-space: nowrap;
+        -moz-border-radius: 3px;
+        -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+        -webkit-border-radius: 3px;
+        -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+        background-color: #f7f7f7;
+        border: 1px solid #ccc;
+        border-radius: 0.3em;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+        color: #333;
+        display: inline-block;
+        font-family: 'Gill Sans Nova Medium';
+        line-height:1.2;
+        margin:0 .1em;
+        padding:.1em .6em;
+        padding-bottom: .3em;
+        text-shadow:0 1px 0 #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+layout: true
+class: center, middle
+
+---
+
+# ***Effective Text Editing with Vim***
+&nbsp;  
+<span style="font-size: 160%">Αλέξανδρος Παπαχρήστου</span><br>
+<span style="font-size: 120%"><code>alex@papachristou.me</code></span>
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+<span style="font-size: 170%; font-style: italic">5 Νοεμβρίου 2017</span>
+&nbsp;  
+
+---
+
+layout: false
+.left-column[
+  ## Το πρόβλημα
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+  Μεγάλο μέρος του χρόνου μπροστά από το υπολογιστή ξοδεύεται στην επεξεργασία κειμένου σε πράγματα όπως:
+
+- E-mails
+
+- Συνομιλία
+
+- Συγγραφή άρθρων
+
+- Συγγραφή εφαρμογών
+
+]
+
+---
+class: center
+layout: false
+.left-column[
+  ## Το εργαλείο
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+  ### Vim
+  #### Vi IMproved — κλώνος του Vi
+  #### Modal επεξεργαστής κειμένου
+]
+
+---
+## Μια παρένθεση
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+
+<blockquote class="twitter-tweet" data-lang="el"><p lang="en" dir="ltr">I&#39;ve been using Vim for about 2 years now, mostly because I can&#39;t figure out how to exit it.</p>&mdash; I Am Devloper (@iamdevloper) <a href="https://twitter.com/iamdevloper/status/435555976687923200?ref_src=twsrc%5Etfw">17 Φεβρουαρίου 2014</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+class: center
+.left-column[
+  ## Modes you say?
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+&nbsp;  
+  ### Modeless
+  Notepad
+&nbsp;  
+&nbsp;  
+  <kbd>Shift</kbd>
+
+
+  ### Modal
+  Vim
+&nbsp;  
+&nbsp;  
+  <kbd>Caps Lock</kbd>
+]
+
+---
+class: center
+## Modes
+&nbsp;  
+### Normal mode
+#### Το πληκτρολογηθέν κείμενο ερμηνεύεται ως εντολές
+#### Γλώσσα επεξεργασίας κειμένου
+### Insert mode
+#### Εισαγωγή κειμένου στο έγγραφο
+
+---
+.left-column[
+## All the moves
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+- h moves the cursor one character to the left.
+- j moves the cursor down one line.
+- k moves the cursor up one line.
+- l moves the cursor one character to the right.
+- 0 moves the cursor to the beginning of the line.
+- $ moves the cursor to the end of the line.
+- w move forward one word.
+- b move backward one word.
+- G move to the end of the file.
+- gg move to the beginning of the file.
+- `. move to the last edit.
+]
+
+---
+class: center
+## Περισσότερα modes
+### Visual mode
+#### Επιλογή κειμένου
+<kbd>v</kbd> highlight one character at a time.
+&nbsp;  
+&nbsp;  
+<kbd>V</kbd>  highlight one line at a time.
+&nbsp;  
+&nbsp;  
+<kbd>Ctrl-v</kbd> highlight by columns.
+### Replace mode
+#### Αντικατάσταση κειμένου
+
+---
+class: center
+.left-column[
+## Βασικές εντολές
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+### Έξοδος
+<kbd>:q</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>ZQ</kbd>
+### Αποθήκευση
+<kbd>:w</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>:up</kbd>
+]
+
+---
+class: center
+.left-column[
+## Βασικές εντολές
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+### Έξοδος και Αποθήκευση
+<kbd>:wq</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>:x</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>ZZ</kbd>
+]
+
+---
+class: center
+.left-column[
+## Βασικές εντολές
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+####Text Entry Commands (Used to start text entry)
+
+***a*** Append text following current cursor position
+
+***A*** Append text to the end of current line
+
+***i*** Insert text before the current cursor position
+
+***I*** Insert text at the beginning of the cursor line
+
+***o*** Open up a new line following the current line and add text there
+
+***O*** Open up a new line in front of the current line and add text there
+]
+
+---
+class: center
+.left-column[
+## Βασικές εντολές
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+####Text Deletion Commands
+
+***x*** Delete character
+
+***dw*** Delete word from cursor on
+
+***db*** Delete word backward
+
+***dd*** Delete line
+
+***d$*** Delete to end of line
+
+***d^*** (d caret, not CTRL d) Delete to beginning of line
+]
+
+---
+class: center
+.left-column[
+## Βασικές εντολές
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+### Επανάληψη
+<kbd>.</kbd>
+### Undo
+<kbd>u</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>:earlier</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>:later</kbd>
+]
+
+---
+class: center
+.left-column[
+## Βασικές εντολές
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+### Redo
+<kbd>Ctrl-r</kbd>
+&nbsp;  
+### Yank (Copy)
+<kbd>y</kbd>
+&nbsp;  
+### Paste
+<kbd>p</kbd>
+]
+
+---
+class: center, middle
+
+## Το εξέχον χαρακτηριστικό του Vim είναι η συντιθέμενη γλώσσα (composable language).
+
+---
+class: center
+
+## Η γλώσσα
+&nbsp;  
+&nbsp;  
+
+### *τελεστής [αριθμός] κίνηση*
+
+
+---
+.left-column[
+## Registers
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+### Χρήση register
+<kbd>"</kbd>
+&nbsp;  
+### Unnamed register
+<kbd>""</kbd>
+&nbsp;  
+### System clipboard
+<kbd>"*</kbd>
+&nbsp;  
+]
+
+---
+.left-column[
+## Registers
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+### Black hole
+<kbd>"_</kbd>
+&nbsp;  
+### Expression register
+<kbd>"=</kbd>
+&nbsp;  
+]
+
+---
+.left-column[
+## Marks
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+### Mark
+<kbd>m</kbd>
+&nbsp;  
+### Πήγαινε στη θέση του mark
+<kbd>`</kbd>
+&nbsp;  
+### Πήγαινε στη γραμμή του mark
+<kbd>'</kbd>
+&nbsp;  
+]
+
+---
+class: center,middle
+<img width="108%" src="assets/vi-vim-cheat-sheet.svg"/>
+
+---
+class: center, middle
+## Text Objects
+
+---
+class: center
+.left-column[
+## Command mode
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+### Command mode
+<kbd>:</kbd>
+&nbsp;  
+&nbsp;  
+### Command-line window
+<kbd>q:</kbd>
+]
+
+---
+class: center
+.left-column[
+## Buffers &amp; Windows
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+### Buffers
+***:ls***	List the current buffers (including their numbers).
+&nbsp;  
+***:b*** <number>	Display the buffer with the given number.
+&nbsp;  
+***:b*** <partial>	Display the first buffer matching the partial name (or press Tab for name completion).
+&nbsp;  
+***:bd***	Delete the current buffer; will fail if unsaved (nothing is deleted).
+]
+
+---
+class: center
+.left-column[
+## Buffers &amp; Windows
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+### Windows
+<kbd>Ctrl-w</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>Ctrl-c</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>Ctrl-s</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>Ctrl-v</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>Ctrl-o</kbd>
+]
+
+---
+class: center, middle
+.left-column[
+## Macros
+]
+.right-column[
+&nbsp;  
+### Record
+<kbd>q</kbd>
+&nbsp;  
+### Stop recording
+<kbd>q</kbd>
+&nbsp;  
+### Execute
+<kbd>@</kbd>
+&nbsp;  
+]
+
+---
+class: center
+.left-column[
+## Completion
+]
+.right-column[
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+###Simple word completion
+<kbd>Ctrl-p</kbd>
+&nbsp;  
+&nbsp;  
+<kbd>Ctrl-n</kbd>
+###Filename completion
+<kbd>Ctrl-x Ctrl-f</kbd>
+]
+
+---
+class: center
+
+## Βοήθεια
+&nbsp;  
+
+### <code>:h[elp]</code>
+### <code>$ vimtutor</code>
+&nbsp;  
+&nbsp;  
+
+### *A little fun*
+<code style="font-size: 120%">vimgolf.com</code>
+
+---
+class: center,middle
+<code>https://sindex.github.io/talks/vim-fosscomm</code>
+
+---
+class: center, middle
+
+## <span style="font-size: 85%">✦</span> Ερωτήσεις <span style="font-size: 85%">✦</span>
+
+    </textarea>
+    <script src="remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
